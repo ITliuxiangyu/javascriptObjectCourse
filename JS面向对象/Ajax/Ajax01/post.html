@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+        <button>post</button>
+
+    </body>
+</html>
+<script>
+
+    var btn = document.querySelector('button');
+    var url = "http://localhost:3333";
+    // 如果有多个参数就用&来分割
+//    var str = "myUrl=http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html";
+
+    var obj = {
+        myUrl: "http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html",
+        username: "waige"
+    };
+    btn.onclick = function () {
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                callback(this.responseText);
+            }
+        };
+        xhr.open("POST", url);
+        // 查询参数放到查询主体内, 在地址栏中看不到查询参数
+        xhr.send(stringify(obj));
+    };
+
+    function callback(res) {
+        console.log(res);
+    }
+
+    function stringify(obj) {
+        var str = "";
+        for (key in obj) {
+            str += "&" + key + "=" + obj[key];
+        }
+        str = str.replace(/^$/, "");
+        return str;
+    }
+
+
+
+
+
+</script>

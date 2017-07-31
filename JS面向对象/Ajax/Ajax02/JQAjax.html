@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+        <button>jqueryAjax</button>
+
+    </body>
+</html>
+<script src="js/jquery.js"></script>
+<script>
+
+    // http://d.api.budejie.com/topic/recommend/budejie-android-6.6.6/0-30.json?market=b-meizu&ver=6.6.6&visiting=&os=5.1&appname=baisibudejie&client=android&udid=869322023780081&mac=
+    var url = "http://118.89.221.165:3000?myUrl=http://s.budejie.com/topic/tag-topic/64/hot/budejie-android-6.6.6/0-20.json";
+    /*
+    $('button').click(function () {
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (r) {
+                console.log(r);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+
+    });
+    */
+
+    /*
+    $('button').click(function () {
+
+        $.ajax({
+            url: "http://localhost:3333",
+            data: {
+                myUrl: "http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html"
+            },
+            type: "POST",
+            success: function (r) {
+                console.log(r);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    });
+    */
+
+    /*
+    $('button').click(function () {
+
+//        $.get(url, function (r) {
+//            console.log(r);
+//        });
+//        var options = {myUrl: "http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html"}
+//        $.post('http://localhost:3333', options, function (r) {
+//            console.log(r);
+//        });
+    });
+    */
+
+
+    // jsonp
+    $('button').click(function () {
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            // 接收的数据格式
+            dataType: "jsonp",
+            // 替代callback参数=?后面jqyery随机生成的函数名
+            // jsonpCallback: "test",
+            // 函数参数名 默认是callback
+            // jsonp: "waige",
+            success: function (r) {
+                console.log(r);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+    })
+
+
+
+
+
+
+
+
+
+
+</script>

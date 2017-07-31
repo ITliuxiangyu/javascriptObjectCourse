@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+</html>
+<script>
+
+    var obj = {
+        x: 1,
+        y: 2,
+        "z": 3
+    };
+    /*
+    console.log(obj.x, obj.y, obj.z);
+    console.log(obj["x"], obj["y"], obj["z"]);
+    var a = "x";
+    console.log(obj[a]);
+    */
+    // 遍历对象
+
+    /*
+    for (a in obj) {
+        console.log(a, obj[a]);
+    }
+
+    console.log(obj.toString());
+    */
+
+    // 是否有自有属性
+    console.log(obj.hasOwnProperty("x"));
+    // toString是继承过来的返回false
+    console.log(obj.hasOwnProperty("toString"));
+
+    // 创建一个对象o继承于{x: 1}
+    var o = Object.create({x: 1});
+    // o1继承于null
+    var o1 = Object.create(null);
+
+    // 属性的特性
+    // value: 属性的值
+    // writable: 是否可写
+    // enumerable: 是否可枚举
+    // configurable: 是否可配置
+    console.log(Object.getOwnPropertyDescriptor(obj, "x"));
+
+
+    var treeNewBee = {
+        x: 66,
+        y: 88,
+        z: 100
+    };
+    Object.defineProperty(treeNewBee, "x", {
+        value: 19,
+        // 如果为false, 后面修改值的话没有效果
+        writable: true,
+        // 是否可枚举
+        enumerable: false
+    });
+    console.log(treeNewBee.x);
+    treeNewBee.x = 99;
+    console.log(treeNewBee.x);
+    // Object.keys(obj)
+    console.log(Object.keys(treeNewBee));
+
+    // 判断对象的属性是否可枚举
+    console.log(treeNewBee.propertyIsEnumerable("x"));
+
+    Object.defineProperty(treeNewBee, "x", {
+        // 一旦该值为false, 属性的 可写性, 可枚举性, 可配置性不能再进行配置, 如果属性的可写性为false, value值也不能配置.
+        configurable: false
+    });
+
+    // 如果对象的特性configurable 为true, 那么该对象可以进行配置(多次配置都行)
+    Object.defineProperty(treeNewBee, "x", {
+        value: 100
+//        writable: true,
+//        enumerable: true
+    });
+//    treeNewBee.x = 99;
+    console.log(Object.getOwnPropertyDescriptor(treeNewBee, "x"));
+
+    Object.defineProperties(treeNewBee, {
+        y: {writable: false},
+        z: {value: 2, writable: false}
+
+    });
+    // 打印自有属性的特性
+    console.log(Object.getOwnPropertyDescriptor(treeNewBee, "y"));
+    console.log(Object.getOwnPropertyDescriptor(treeNewBee, "z"));
+
+
+    // 存储器属性
+    var dog = {
+        w: 50,
+        h: 30,
+        // squre就是存储器属性, 如果只有get没有set, 那么该属性为只读属性
+        get squre() {
+            return this.w * this.h
+        },
+        set squre(obj) {
+            this.w = obj.w;
+            this.h = obj.h
+        }
+    };
+    console.log(dog.squre);
+    dog.squre = {w: 89, h: 211};
+    console.log(dog.squre);
+    console.log(dog);
+
+    console.log(Object.getOwnPropertyDescriptor(dog, 'squre'));
+
+    Object.defineProperty(dog, "squre", {
+        get: function () {
+        return (this.w + this.h) * 2;
+        }
+
+    });
+    console.log(dog.squre);
+
+
+
+
+
+
+</script>

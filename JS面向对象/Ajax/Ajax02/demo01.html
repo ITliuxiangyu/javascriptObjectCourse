@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+        <style>
+
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            #box {
+                width: 370px;
+                height: 640px;
+                border: 2px solid gray;
+                box-shadow: 3px 3px 30px 2px gray;
+                margin: 100px auto 0;
+                border-radius: 5px;
+                overflow: scroll;
+            }
+
+            ul {
+                list-style: none;
+                box-sizing: border-box;
+                padding: 10px;
+            }
+
+            img {
+                vertical-align: top;
+            }
+
+            li {
+                width: 100%;
+                border: 1px solid gray;
+                border-radius: 2px;
+                margin: 5px 0;
+                position: relative;
+            }
+
+        </style>
+
+    </head>
+    <body>
+
+        <button>刷新</button>
+
+        <div id="box">
+            <ul>
+
+            </ul>
+        </div>
+
+    </body>
+</html>
+<script src="js/jquery.js"></script>
+<script>
+
+    var str = "http://s.budejie.com/topic/tag-topic/64/hot/budejie-android-6.6.6/0-20.json?market=b-meizu&ver=6.6.6&visiting=&os=5.1&appname=baisibudejie&client=android&udid=869322023780081&mac=";
+    str = encodeURIComponent(str);
+    var url = "http://localhost:3000?myUrl=";
+    url += str;
+
+    $('button').click(function () {
+
+        $.ajax({
+            url: url,
+            dataType: "jsonp",
+            success:function (r) {
+
+                loadDataAndShow(r);
+
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+    });
+
+    function loadDataAndShow(r) {
+
+        // 获取请求到的内容
+        var obj = JSON.parse(r);
+
+        // 获取list数组
+        var listArr = obj.list;
+        console.log(obj);
+
+        // 遍历数组
+        eachArray(listArr);
+    }
+
+    function eachArray(arr) {
+
+        for (var i = 0; i < arr.length; i++) {
+
+            var obj = arr[i];
+            console.log(obj);
+
+            var li = $('<li/>').append($("<h2/>").html(obj.text));
+            $('ul').append(li);
+        }
+    }
+
+
+
+
+
+
+
+
+</script>

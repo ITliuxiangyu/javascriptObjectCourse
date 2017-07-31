@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+        <button>myAjax</button>
+
+    </body>
+</html>
+<script src="js/myAjax.js"></script>
+<script>
+
+    var btn = document.querySelector('button');
+    btn.addEventListener('click', function () {
+
+
+        var url = "http://localhost:4000?myUrl=http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html";
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            success: function (r) {
+                console.log(r);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

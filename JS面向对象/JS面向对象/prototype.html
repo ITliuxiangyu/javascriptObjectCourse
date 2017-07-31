@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+</html>
+<script>
+
+    /*
+    var arr = new Array(5);
+    console.log(arr.length);
+    */
+    var arr = new Array(5, 6, 7, 8, 9, 10);
+    console.log(arr);
+    // 每一个构造函数都有一个原型对象
+    // arr 的 方法和属性 都继承于 Array.prototype
+    Array.prototype.add = function () {
+        var result = 0;
+        for (var i = 0; i < this.length; i++) {
+            result += this[i];
+        }
+        return result;
+    };
+    console.log(arr.add());
+
+    String.prototype.test = function () {
+        // 去掉的前后空格
+        var result = this.replace(/^\s|\s$/g, "");
+        result = result.replace(/\s+/g, " ");
+//        console.log(result);
+        return result;
+    };
+
+    var str = "   div    span    ";
+    console.log(str.test());
+
+    Date.prototype.getWeek = function () {
+
+        var arr = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+        return arr[this.getDay()];
+    };
+    var newDate = new Date;
+    console.log(newDate.getWeek());
+
+
+    // 原型链
+    // var obj = {}; // 等价于 new Object;
+    var obj = new Object();
+    console.log(obj);
+    // 该属性目前只有webkit内核浏览器支持
+    // obj.__proto__ 就是obj的爹
+    // Object.prototype 也是obj的爹
+    console.log(obj.__proto__);
+    console.log(obj.__proto__ == Object.prototype);
+    console.log(Object.prototype.__proto__);
+
+    // console.log(5..toString());
+    // js中万事万物皆对象
+    var str = new String();
+    // str继承与String.prototype
+    // str.index = "我就是我";
+
+    // String.prototype.index = "我是他爹String.prototype";
+    // String.prototype 继承于 Object.prototype
+
+    Object.prototype.index = "我是他爷爷Object.prototype";
+    console.log(str.index);
+
+    // 当查找属性或方法时, 会沿着 str.__proto__.proto__一直找到 Object.prototype.__proto__为空位止, 我们把这个有原型组成的链称作原型链
+
+
+
+
+
+
+
+</script>

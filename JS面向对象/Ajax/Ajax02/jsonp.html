@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <button>jsonp方式解决跨域问题</button>
+
+</body>
+</html>
+<script>
+
+    var url = "http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html";
+
+    var btn = document.querySelector('button');
+    btn.onclick = function () {
+
+        var script = document.createElement('script');
+        script.src = "http://localhost:3000?myUrl=" + url + "&callback=jsonpCallback";
+        document.querySelector('html').appendChild(script);
+
+
+    };
+    function jsonpCallback(data) {
+        console.log(data);
+    }
+
+
+
+
+
+
+
+
+
+
+</script>

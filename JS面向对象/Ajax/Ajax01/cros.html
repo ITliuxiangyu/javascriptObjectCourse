@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+        <button>CROS</button>
+
+    </body>
+</html>
+<script>
+
+    var button = document.querySelector('button');
+    button.onclick = function () {
+
+        var url = "http://localhost:3000/wy?myUrl=http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html";
+
+
+
+//        str = encodeURIComponent(str);
+//        console.log(str);
+//        url += str;
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+                callback(this.responseText);
+            }
+
+        };
+        // 第三个参数如果为false, 代表同步, 会阻塞线程, 请求下面的代码只有在请求完成以后才会执行
+        // 异步: 不会阻塞线程, 请求发起以后, 请求下面的代码继续执行
+        xhr.open("GET", url);
+        xhr.send();
+
+        for (var i = 0; i < 10; i++) {
+            console.log(i);
+        }
+
+    };
+
+    function callback(response) {
+        console.log(response);
+    }
+
+
+    // 1 escape()函数
+    // 该方法不会对 ASCII 字母和数字进行编码，也不会对下面这些 ASCII 标点符号进行编码： - _ . ! ~ * ' ( ) 。其他所有的字符都会被转义序列替换。
+
+    // 2. encodeURI()函数
+    // 该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码： - _ . ! ~ * ' ( ) 。该方法的目的是对 URI 进行完整的编码，因此对以下在 URI 中具有特殊含义的 ASCII 标点符号，encodeURI() 函数是不会进行转义的：;/?:@&=+$,#
+
+    // 3.encodeURIComponent() 函数
+    // 该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码： - _ . ! ~ * ' ( ) 。其他字符（比如 ：;/?:@&=+$,# 这些用于分隔 URI 组件的标点符号），都是由一个或多个十六进制的转义序列替换的。
+
+    // 提示和注释
+    // 提示：请注意 encodeURIComponent() 函数 与 encodeURI() 函数的区别之处，前者假定它的参数是 URI 的一部分（比如协议、主机名、路径或查询字符串）。因此 encodeURIComponent() 函数将转义用于分隔 URI 各个部分的标点符号。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

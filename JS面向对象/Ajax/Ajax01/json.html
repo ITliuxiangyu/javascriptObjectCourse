@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+</html>
+<script>
+
+    var jsonObj = {
+        name: "歪哥",
+        age: 18,
+        gender: "男"
+    };
+    var str = JSON.stringify(jsonObj, ["name"]);
+    console.log(str);
+
+    var str2 = JSON.stringify(jsonObj, function (key, value) {
+        if (key == "name") {
+            return "帅哥";
+        } else {
+            return value;
+        }
+    });
+    console.log(str2);
+
+    var str3 = JSON.stringify(jsonObj, 1, "ok");
+    console.log(str3);
+
+    // 字符串中保留缩进, 最大值是10
+    var str4 = JSON.stringify(jsonObj, 1, 10);
+    console.log(str4);
+
+    var o = JSON.parse(str4);
+    console.log(o);
+
+    var o1 = JSON.parse(str4, function (key, value) {
+        if (key == "name") {
+            return "哈哈";
+        } else {
+            return value;
+        }
+    });
+    console.log(o1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

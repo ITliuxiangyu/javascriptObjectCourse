@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+</html>
+<script>
+    // 工厂函数 (可以造人的工厂)
+    function person(name, gender) {
+        var per = {};
+        per.name = name;
+        per.gender = gender;
+        per.showInfo = function () {
+            alert(per.name + "," + per.gender);
+        };
+        return per;
+    }
+
+    /*
+    var xiaoming = person("小明", "男");
+    var xiaohong = person("小红", "女");
+    console.log(xiaoming.name, xiaoming.gender);
+    xiaoming.showInfo();
+    */
+
+    // new
+    function test() {
+        console.log(666666);
+    }
+    // new test();
+    // new test;
+    // new 可以直接调用函数, 函数如果没有参数, 小括号可以去掉
+
+
+    // 构造函数, 首字母大写
+    function Bird(type, age, color) {
+        // var b = {};
+        this.type = type;
+        this.age = age;
+        this.color = color;
+        this.show = function () {
+            console.log(this.type, this.age, this.color);
+        };
+        // return {};c
+        // return this;
+    }
+
+    var bird1 = new Bird("鹦鹉", 3, "red");
+    console.log(bird1.type, bird1.age, bird1.color);
+    bird1.show();
+
+    // new 构造函数, 可以创建一个对象, 并把这个对象作为函数的返回值, return this可以省略, this代表的就是创建的对象, 如果 写了return, return后面的返回值就是函数的返回值
+
+
+
+
+
+</script>

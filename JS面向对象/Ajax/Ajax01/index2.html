@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+        <button>GET请求</button>
+
+    </body>
+</html>
+<script>
+
+    var btn = document.querySelector("button");
+    btn.addEventListener('click', get);
+
+    function get() {
+
+        var myUrl = "http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html";
+        var textUrl = "lib/text.html";
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+
+
+            if (this.readyState == 4 || this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+        xhr.open("GET", textUrl);
+        // 设置请求头
+        xhr.setRequestHeader("Content-Type", "text/plain");
+        xhr.send();
+    }
+
+    // 什么是跨域?
+    // 域(Domain)是windows网络中独立运行的单位, 域之间相互访问需要建立信任关系(即Trust Relation)。信任关系链接域与域之前的桥梁, 当一个域与其他域建立了信任关系,两个域之间不但可以按需要进行相互管理,还可以跨网分配文件和打印机等设备资源, 是不同的域之间实现网络资源的共享与管理。由于安全原因, 跨域访问时被各大浏览器所默认禁止
+
+    // http: //www.a.com/a.js http: //www.a.com/b.js 不是跨域
+    // http://www.a.com/a.js http: //www.a.com/lib/script/b.js 不是跨域
+
+
+    // 跨域情况
+    /*
+     * http://www.a.com  http://www.b.com 不同域名
+     * http://www.a.com:8000  http://www.a.com:3000 相同域名,不同端口号
+     * http://www.a.com:8000 http://www.a.com/a.js 相同域名,不同端口号
+     * http://www.a.com http://70.33.2.92.74 域名和域名对应ip也是跨域
+     * http://www.a.com/a.js http://script.a.com/b.js 主域相同,子域不同
+     * http://www.a.com/a.js http://a.com/b.js 相同一级域名,不同二级域名不允许
+     * */
+
+    // 同源策略
+    // 阻止从一个域上加载的脚本获取或操作另一个域上的文档属性, 也就是说,收到请求的url的域必须与当前web页面的域相同
+
+
+    // 如何解决跨域问题
+    // 1.CRO(cross origin sharing)
+    // 2.jsonp
+    // 3. 配置服务器, 设置代理服务器
+
+
+
+    // ls 查看内容
+    // cd lib进入文件夹
+    // cd ../ 返回上级目录
+    //
+
+
+
+</script>
+
+
+

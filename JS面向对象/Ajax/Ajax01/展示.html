@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        ul {
+            list-style: none;
+            border: 2px solid lightgray;
+            margin: 100px auto 0;
+            width: 90%;
+            min-width: 320px;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        li {
+            box-sizing: border-box;
+            padding: 5px;
+            position: relative;
+            height: 200px;
+        }
+
+        li>img {
+            position: absolute;
+            height: 100%;
+            width: 40%;
+        }
+
+        li>p:first-of-type {
+            position: absolute;
+            height: 20%;
+            top: 0;
+            right: 0;
+            width: 60%;
+            text-align: center;
+            color: red;
+            font-size: 20px;
+        }
+
+        li>p:last-child {
+            position: absolute;
+            height: 20%;
+            color: red;
+            font-size: 20px;
+            text-align: center;
+            right: 0;
+            bottom: 0;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<button>展示</button>
+<ul></ul>
+</body>
+</html>
+<script src="js/jquery.js"></script>
+<script>
+    $('button').click(function () {
+
+        var url = "http://localhost:3000/wy?myUrl=http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html";
+        var xhr = new XMLHttpRequest;
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                callback(this.responseText);
+            }
+        };
+//        xhr.timeout = 5000;
+//        xhr.ontimeout = function () {
+//            console.log("请求超时");
+//        };
+
+        xhr.open("GET", url);
+        xhr.send();
+
+    });
+
+    function callback(res) {
+        var obj = JSON.parse(res);
+//        console.log(obj.T1348647853363);
+        var dataArr = obj.T1348647853363;
+        dataArr.splice(0, 1);
+        console.log(dataArr);
+
+        for (var i = 0; i < dataArr.length; i++) {
+            var obj = dataArr[i];
+            var li = $("<li/>").append($("<img/>").attr("src", obj.imgsrc)).append($("<p/>").html(obj.title)).append($('<p/>').html(obj.ptime));
+            $('ul').append(li);
+            li.attr("index", i);
+            li.click(function () {
+                window.open(dataArr[$(this).attr("index")].url);
+            });
+
+        }
+
+    }
+
+
+
+</script>

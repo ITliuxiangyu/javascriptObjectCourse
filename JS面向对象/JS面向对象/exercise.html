@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p><span></span></p>
+    <p><span></span></p>
+
+    <h2>cars</h2>
+    <ul>
+        <li>
+            <span></span>
+            <span></span>
+            <img src="" alt="">
+        </li>
+        <li>
+            <span></span>
+            <span></span>
+            <img src="" alt="">
+        </li>
+        <li>
+            <span></span>
+            <span></span>
+            <img src="" alt="">
+        </li>
+    </ul>
+
+
+</body>
+</html>
+<script src="jquery.js"></script>
+<script>
+    // 复杂的对象
+    var obj = {
+        dog: {
+            name: "泰迪",
+            age: 3,
+            tz: {
+                name: "跳蚤",
+                color: "black"
+            }
+        },
+        cars: [{
+            color: "蓝色",
+            type: "BMW",
+            src: "http://img0.imgtn.bdimg.com/it/u=195238988,937739050&fm=23&gp=0.jpg"
+
+        }, {
+            color: "red",
+            type: "Jeep",
+            src: "http://img0.imgtn.bdimg.com/it/u=195238988,937739050&fm=23&gp=0.jpg"
+
+        },{
+            color: "blue",
+            type: "保时捷",
+            src: "http://img0.imgtn.bdimg.com/it/u=195238988,937739050&fm=23&gp=0.jpg"
+        }]
+    };
+
+    $('p').eq(0).children('span').html(obj.dog.name + ", " + obj.dog.age + "岁");
+    $('p').eq(1).children('span').html(obj.dog.tz.name + ", " + obj.dog.tz.color);
+
+    $('ul>li>span:first-child').html(function (i, v) {
+        console.log(i);
+        return obj.cars[i].color;
+    });
+    $('ul>li>span:nth-child(2)').html(function (i, v) {
+        console.log(i);
+        return obj.cars[i].type;
+    });
+    $('ul>li>img').attr("src", function (i) {
+        console.log(i);
+        return obj.cars[i].src;
+    });
+
+
+
+</script>

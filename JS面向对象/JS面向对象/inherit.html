@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+</html>
+<script>
+    // 继承
+    // 不同于其它语言, 其它语言继承有父子关系, js中的继承: 别人的东西拿来用就是继承
+    // js中没有多态的概念
+    // js中把终点放到了对象上, 弱化了类的概念(继承于同一个原型的对象属于一个类)
+
+
+    var obj1 = {
+        x: 15,
+        y: 18,
+        add: function () {
+            return this.x + this.y;
+        }
+    };
+    console.log(typeof {});
+    function inherit(o) {
+        if (typeof o != "object") return;
+        var obj = {};
+//        for (key in o) {
+//            obj[key] = o[key];
+//        }
+        obj["x"] = o["x"];
+        obj["y"] = o["y"];
+        return obj;
+    }
+    console.log(obj1.add());
+    var obj2 = inherit(obj1);
+    console.log(obj2);
+
+
+    function Person(name, gender) {
+        this.name = name;
+        this.gender = gender;
+        this.showInfo = function () {
+          alert(this.name + "," + this.gender);
+        };
+    }
+
+    function Student(name, gender, num) {
+        this.num = num;
+        // Person.call(this, name, gender);
+        Person.apply(this, [name, gender]);
+    }
+
+    Person.prototype.age = 18;
+    // 原型的继承
+    Student.prototype = Person.prototype;
+    Student.prototype.age = 30;
+
+    var stu = new Student("小刚", "男", "1890");
+    // stu.showInfo();
+    console.log(stu);
+    console.log(stu.age);
+
+
+    var a1 = {
+        x: 5,
+        y: 10
+    };
+    function Test() {
+        
+    }
+
+    Test.prototype = a1;
+    var a2 = new Test();
+    // console.log(a2.x, a2.y);
+    console.log(a2);
+
+
+
+
+
+
+    /*
+    F1.obj = {x: 10, y: 20};
+    function F1() {
+        var bbb = inherit(F1.obj);
+        return bbb;
+    }
+    var o = F1();
+    */
+
+
+    var o1 = {
+        x: 1,
+        y: 1
+    };
+    var o3 = {
+        x: 1,
+        y: 1
+    };
+    var o2 = o1;
+
+    // 对象比较的是引用
+    console.log(o1 === o3);
+    console.log(o2 === o1);
+    o2.x = 19;
+    console.log(o1);
+
+    var o4 = {};
+    o4.obj = o1;
+    console.log(o4.obj === o2);
+
+
+
+
+
+
+
+</script>
